@@ -1,6 +1,23 @@
+import { useState } from "react";
+
 function ProductForm() {
+  const [getName, setName] = useState("");
+  const [getImageUrl, setImageUrl] = useState("");
+  const [getPrice, setPrice] = useState("");
+  const [getDescription, setDescription] = useState("");
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = {
+      name: getName,
+      price: getPrice,
+      image: getImageUrl,
+      description: getDescription,
+    };
+    alert(JSON.stringify(data));
+  };
+
   return (
-    <form className="post-form">
+    <form className="post-form" onSubmit={handleSubmit}>
       <h1>Create Product Form</h1>
       <div className="input-container">
         <label>
@@ -10,7 +27,10 @@ function ProductForm() {
             name="name"
             type="text"
             placeholder="Enter name here"
-            onChange={() => {}}
+            value={getName}
+            onChange={(event) => {
+              setName(event.target.value);
+            }}
           />
         </label>
       </div>
@@ -22,7 +42,10 @@ function ProductForm() {
             name="image"
             type="text"
             placeholder="Enter image url here"
-            onChange={() => {}}
+            value={getImageUrl}
+            onChange={(event) => {
+              setImageUrl(event.target.value);
+            }}
           />
         </label>
       </div>
@@ -34,7 +57,10 @@ function ProductForm() {
             name="price"
             type="number"
             placeholder="Enter price here"
-            onChange={() => {}}
+            value={getPrice}
+            onChange={(event) => {
+              setPrice(event.target.value);
+            }}
           />
         </label>
       </div>
@@ -46,7 +72,10 @@ function ProductForm() {
             name="description"
             type="text"
             placeholder="Enter description here"
-            onChange={() => {}}
+            value={getDescription}
+            onChange={(event) => {
+              setDescription(event.target.value);
+            }}
             rows={4}
             cols={30}
           />
